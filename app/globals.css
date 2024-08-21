@@ -1,3 +1,89 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Custom global styles */
+body {
+  @apply font-sans bg-gray-100 text-gray-900;
+}
+
+header {
+  @apply w-full bg-white shadow-md fixed top-0 left-0 flex items-center justify-between px-4 py-2 z-50;
+}
+
+.sidebar {
+  @apply flex items-center space-x-4 bg-indigo-600 text-white p-2 rounded-md;
+}
+
+.main-content {
+  @apply pt-16 pl-20 pr-4 pb-4;
+}
+
+.sidebar-menu {
+  @apply space-y-4 flex flex-col items-start;
+}
+
+.sidebar-menu-item {
+  @apply text-sm font-medium px-2 py-1 hover:bg-indigo-500 rounded-md;
+}
+
+.sidebar-menu-item.active {
+  @apply bg-indigo-700;
+}
+
+.sidebar-footer {
+  @apply mt-auto flex items-center justify-center text-xs text-white py-2;
+}
+
+/* Additional responsive styles */
+@screen md {
+  .main-content {
+    @apply pl-64;
+  }
+}
+
+.bg-custom-gradient {
+  background: linear-gradient(135deg, #f3f3f3, #dce0e6);
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  width: 100%;
+}
+
+.welcome-section {
+  padding: 2rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.85); /* Light background with slight transparency */
+}
+

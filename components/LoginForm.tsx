@@ -115,6 +115,7 @@ const LoginForm: React.FC = () => {
           <p className="text-sm text-gray-700">OR</p>
           <button
             type="button"
+            // onSubmit={() => signIn('google') }
             className="mt-2 w-full py-2 text-gray-700 bg-white border border-gray-300 rounded-full shadow-md flex items-center justify-center gap-2 hover:bg-gray-100" // More rounded
           >
             <svg

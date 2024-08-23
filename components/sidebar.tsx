@@ -22,12 +22,12 @@ const Sidebar: React.FC = () => {
     <div className="flex">
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 h-full bg-[#b8b8de] z-50 transform ${
+        className={`fixed top-0 left-0 h-full bg-[#e8e8f5] z-50 transform ${
           isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
         } transition-transform duration-300 ease-in-out w-42`}
       >
         <div className="flex flex-col h-full">
-          <div className="flex items-center justify-between p-4 bg-black text-white">
+          <div className="flex items-center justify-between p-4 bg-[#8080c0] text-white">
             <h2 className="text-lg">Adrian Dev</h2>
             <button
               onClick={toggleSidebar}
@@ -44,7 +44,7 @@ const Sidebar: React.FC = () => {
               <Link
                 href={link.route}
                 key={link.label}
-                className="block py-2 px-4 text-black bg-[#b8b8de] hover:bg-[#9c9cdb] rounded"
+                className="block py-2 px-4 text-black bg-[#e8e8f5] hover:bg-[#d6d6f0] rounded"
               >
                 {link.label}
               </Link>
@@ -55,7 +55,7 @@ const Sidebar: React.FC = () => {
           <div className="absolute bottom-4 left-4 w-full px-4">
             <Link
               href="/sign-out"
-              className="flex items-center gap-2 text-black bg-[#b8b8de] hover:bg-[#9c9cdb] p-2 rounded-md text-sm"
+              className="flex items-center gap-2 text-black bg-[#e8e8f5] hover:bg-[#d6d6f0] p-2 rounded-md text-sm"
             >
               <svg
                 className="w-4 h-4"
@@ -78,7 +78,7 @@ const Sidebar: React.FC = () => {
       </div>
 
       {/* Header */}
-      <header className="flex justify-between items-center w-full text-black bg-[#9c9cdb] hover:bg-[5ad6c8] p-4 shadow-md h-20">
+      <header className="flex justify-between items-center w-full text-black bg-[#d6d6f0] hover:bg-[#c8c8e0] p-4 shadow-md h-20">
         <button
           onClick={toggleSidebar}
           className="focus:outline-none"

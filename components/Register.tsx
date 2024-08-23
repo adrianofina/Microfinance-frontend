@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import axios from "axios";
 import { signIn, useSession } from "next-auth/react";
 
-
 const RegisterForm: React.FC = () => {
   const router = useRouter();
   const [fullName, setFullName] = useState('');
@@ -35,7 +34,7 @@ const RegisterForm: React.FC = () => {
 
     // API call to register a new user
     try {
-      const response = await axios.post('/api/auth/register', {
+      const response = await axios.post('/api/users', {
         fullName,
         email,
         password,
@@ -44,7 +43,7 @@ const RegisterForm: React.FC = () => {
       // Successful registration
       if (response.status === 201) {
         setErrorMessage(''); // Clear error message
-        router.push('/'); // Redirect to the landing page
+        router.push('/home'); // Redirect to the landing page
       } else {
         setErrorMessage('Registration failed. Please try again.');
       }
@@ -54,8 +53,21 @@ const RegisterForm: React.FC = () => {
     }
   };
 
+  const handleGoogleSubmit = async () => {
+    try {
+      const response = await signIn('google',{ redirect: false });
+  
+      if (response?.status == 200) {
+        router.push('/home');
+      } else {
+        console.log('Google sign-in successful');
+      }
+    } catch (error) {
+      console.error('An error occurred during Google sign-in:', error);
+    }
+  };
+
   const validateEmail = (email: string) => {
-    // Simple email validation (you might want to use a more robust regex)
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
@@ -135,7 +147,7 @@ const RegisterForm: React.FC = () => {
           </div>
           <button
             type="submit"
-            className="w-full py-2 mt-4 text-white bg-gradient-to-r from-purple-500 to-green-500 rounded-full shadow-md hover:bg-gradient-to-l" // More rounded and green/lavender
+            className="w-full py-2 mt-4 text-white bg-gradient-to-r from-purple-500 to-green-500 rounded-full shadow-md hover:bg-gradient-to-l"
           >
             SIGN UP
           </button>
@@ -143,8 +155,9 @@ const RegisterForm: React.FC = () => {
         <div className="flex flex-col items-center mt-6">
           <p className="text-sm text-gray-700">OR</p>
           <button
+            onClick={handleGoogleSubmit}
             type="button"
-            className="mt-2 w-full py-2 text-gray-700 bg-white border border-gray-300 rounded-full shadow-md flex items-center justify-center gap-2 hover:bg-gray-100" // More rounded
+            className="mt-2 w-full py-2 text-gray-700 bg-white border border-gray-300 rounded-full shadow-md flex items-center justify-center gap-2 hover:bg-gray-100"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

@@ -8,7 +8,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from "@/components/button";
 import { Loader2 } from 'lucide-react';
-// import { getLoggedInUser, applyForLoan, getLoanHistory } from '@/lib/actions/user.actions';
+import LoanStatusDisplay from '@/components/LoanStatusDisplay';
+import LoanTable from '../../../components/LoansTable'; // Import the LoanTable component
 
 const HomePage = () => {
   const router = useRouter();
@@ -112,23 +113,36 @@ const HomePage = () => {
 
         {/* Welcome and Credentials Section */}
         <div className="welcome-section bg-gray-100 rounded-lg shadow-2xl p-8">
-          <h2 className="text-2xl font-semibold mb-4 text-gray-800">Welcome User!</h2>
+          <h2 className="text-2xl font-semibold mb-4 text-gray-800">Welcome Laurent!</h2>
           <p className="mb-6 text-gray-700">
             Meet Adriano, Your trusted partner for financial solutions. We are here to help you achieve your financial goals.
           </p>
-          <div className="mb-8">
-            <h3 className="text-lg font-medium text-gray-800">Your Credentials:</h3>
-            <p className="text-gray-700">First Name: Laurent</p>
-            <p className="text-gray-700">Surname: Adriano</p>
-            <p className="text-gray-700">Phone Number: +255784461743</p>
-            <p className="text-gray-700">Email: adriandevelopment@gmail.com</p>
-            <p className="text-gray-700">Date of Birth: 14 Feb 1969</p>
-            <p className="text-gray-700">Address: Business Street, Mwanza</p>
-            <p className="text-gray-700">Gender: Male</p>
-            <p className="text-gray-700">Occupation: Business Man</p>
-            <p className="text-gray-700">Marital status: Married</p>
-          </div>
-          <div className="flex space-x-4">
+          <div className="flex">
+  {/* Left Side - 60% */}
+  <div className="w-3/5 mb-8">
+    <h3 className="text-lg font-medium text-gray-800">Your Credentials:</h3>
+    <p className="text-gray-700">First Name: Laurent</p>
+    <p className="text-gray-700">Surname: Adriano</p>
+    <p className="text-gray-700">Phone Number: +255784461743</p>
+    <p className="text-gray-700">Email: adriandevelopment@gmail.com</p>
+    <p className="text-gray-700">Date of Birth: 14 Feb 1969</p>
+    <p className="text-gray-700">Address: Business Street, Mwanza</p>
+    <p className="text-gray-700">Gender: Male</p>
+    <p className="text-gray-700">Occupation: Business Man</p>
+    <p className="text-gray-700">Marital status: Married</p>
+  </div>
+
+  {/* Right Side - 40% */}
+  <div className="w-2/5 mb-8">
+    {/* Content for the right side goes here */}
+   
+       <LoanStatusDisplay/>
+
+  </div>
+  
+</div>
+
+          <div className="flex space-x-8">
             <Button
               onClick={() => router.push('/credentials')}
               className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
@@ -139,6 +153,39 @@ const HomePage = () => {
               onClick={() => router.push('/loan-application')}
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             >
+
+  {/* <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              <div className="flex gap-4">
+                <CustomInput control={form.control} name='firstName' label="First Name" placeholder='Enter your first name' />
+                <CustomInput control={form.control} name='lastName' label="Last Name" placeholder='Enter your last name' />
+              </div>
+              <CustomInput control={form.control} name='address1' label="Address" placeholder='Enter your address' />
+              <CustomInput control={form.control} name='city' label="City" placeholder='Enter your city' />
+              <div className="flex gap-4">
+                <CustomInput control={form.control} name='state' label="State" placeholder='Enter your state' />
+                <CustomInput control={form.control} name='postalCode' label="Postal Code" placeholder='Enter your postal code' />
+              </div>
+              <div className="flex gap-4">
+                <CustomInput control={form.control} name='dateOfBirth' label="Date of Birth" placeholder='YYYY-MM-DD' />
+                <CustomInput control={form.control} name='ssn' label="SSN" placeholder='Enter your SSN' />
+              </div>
+              <CustomInput control={form.control} name='email' label="Email" placeholder='Enter your email' />
+              <CustomInput control={form.control} name='phoneNumber' label="Phone Number" placeholder='Enter your phone number' />
+
+              <div className="flex flex-col gap-4">
+                <Button type="submit" disabled={isLoading} className="form-btn">
+                  {isLoading ? (
+                    <>
+                      <Loader2 size={20} className="animate-spin" /> &nbsp;
+                      Loading...
+                    </>
+                  ) : 'Update Info'}
+                </Button>
+              </div>
+            </form>
+          </Form> */}
+
               Apply for a Loan
             </Button>
             <Button
@@ -158,63 +205,12 @@ const HomePage = () => {
                 </div>
               ) : (
                 <div className="overflow-x-auto mb-4">
-                  {loanHistory.length === 0 ? (
-                    <p>No loan history available.</p>
-                  ) : (
-                    <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md divide-y divide-gray-200">
-                      <thead className="bg-gray-50">
-                        <tr>
-                          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Loan ID
-                          </th>
-                          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Amount (TZS)
-                          </th>
-                          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Status
-                          </th>
-                          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Amount Paid (TZS)
-                          </th>
-                          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Overdue
-                          </th>
-                          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Penalties (TZS)
-                          </th>
-                          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Remaining Balance (TZS)
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody className="bg-white divide-y divide-gray-200">
-                        {loanHistory.map((loan) => (
-                          <tr key={loan.id} className={getStatusColor(loan.status, loan.overdue)}>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                              <div className="text-sm text-gray-900">{loan.id}</div>
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                              <div className="text-sm text-gray-900">{loan.amount.toFixed(2)}</div>
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                              <div className="text-sm text-gray-900 capitalize">{loan.status}</div>
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                              <div className="text-sm text-gray-900">{loan.amountpaid.toFixed(2)}</div>
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                              <div className="text-sm text-gray-900">{loan.overdue ? 'Yes' : 'No'}</div>
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                              <div className="text-sm text-gray-900">{loan.penalties.toFixed(2)}</div>
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                              <div className="text-sm text-gray-900">{loan.remainingBalance.toFixed(2)}</div>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
+                  {
+                  // loanHistory.length === 0 ? (
+                  //   <p>No loan history available.</p>
+                  // ) :
+                   (
+                    <LoanTable loanHistory={loanHistory} /> // Render the LoanTable component
                   )}
                 </div>
               )}

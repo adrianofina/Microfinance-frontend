@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { signIn } from 'next-auth/react';
 
 const LoginForm: React.FC = () => {
   const router = useRouter();
@@ -9,6 +10,7 @@ const LoginForm: React.FC = () => {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
+  // Handle form submission for email/password login
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
@@ -23,23 +25,45 @@ const LoginForm: React.FC = () => {
       return;
     }
 
-    // Implement your login logic here (e.g., API call to authenticate)
-    // For demonstration, we'll simulate successful login and redirect
-    console.log('Logging in with:', email, password);
+    try {
+      // Call NextAuth's signIn function with 'credentials' provider
+      const result = await signIn('credentials', {
+        redirect: false,
+        email,
+        password,
+      });
 
-    // Replace this with your actual authentication logic
-    const isAuthenticated = true; // Assuming successful login for now
-
-    if (isAuthenticated) {
-      setErrorMessage(''); // Clear error message
-      router.push('/'); // Redirect to the landing page
-    } else {
-      setErrorMessage('Invalid email or password.');
+      if (result?.error) {
+        setErrorMessage('Invalid email or password.');
+      } else if (result?.url) {
+        // Successful login
+        router.push('/home');
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      setErrorMessage('Login failed. Please try again.');
     }
   };
 
+  // Handle Google sign-in
+  const handleGoogleSubmit = async () => {
+    try {
+      const response = await signIn('google', { redirect: false });
+
+      if (response?.error) {
+        console.error('Google sign-in error:', response.error);
+        setErrorMessage('Google sign-in failed. Please try again.');
+      } else if (response?.url) {
+        router.push(response.url);
+      }
+    } catch (error) {
+      console.error('Google sign-in error:', error);
+      setErrorMessage('Google sign-in failed. Please try again.');
+    }
+  };
+
+  // Basic email validation
   const validateEmail = (email: string) => {
-    // Simple email validation (you might want to use a more robust regex)
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
@@ -100,13 +124,16 @@ const LoginForm: React.FC = () => {
                 Remember Me
               </label>
             </div>
-            <a href="/forgot-password" className="text-sm text-purple-600 hover:underline">
+            <a
+              href="/forgot-password"
+              className="text-sm text-purple-600 hover:underline"
+            >
               Forgot Password?
             </a>
           </div>
           <button
             type="submit"
-            className="w-full py-2 mt-4 text-white bg-gradient-to-r from-green-500 to-purple-500 rounded-full shadow-md hover:bg-gradient-to-l" // More rounded and green/lavender
+            className="w-full py-2 mt-4 text-white bg-gradient-to-r from-green-500 to-purple-500 rounded-full shadow-md hover:bg-gradient-to-l"
           >
             LOGIN
           </button>
@@ -114,9 +141,9 @@ const LoginForm: React.FC = () => {
         <div className="flex flex-col items-center mt-6">
           <p className="text-sm text-gray-700">OR</p>
           <button
+            onClick={handleGoogleSubmit}
             type="button"
-            // onSubmit={() => signIn('google') }
-            className="mt-2 w-full py-2 text-gray-700 bg-white border border-gray-300 rounded-full shadow-md flex items-center justify-center gap-2 hover:bg-gray-100" // More rounded
+            className="mt-2 w-full py-2 text-gray-700 bg-white border border-gray-300 rounded-full shadow-md flex items-center justify-center gap-2 hover:bg-gray-100"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

@@ -15,6 +15,25 @@ const RegisterForm: React.FC = () => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    const handleSubmit = async (event: React.FormEvent) => {
+      event.preventDefault();
+    
+      const form = event.target as HTMLFormElement;
+      const email = form.email.value;
+      const password = form.password.value;
+    
+      const result = await signIn("credentials", {
+        redirect: false,
+        email: email,
+        password: password,
+      });
+    
+      if (result?.error) {
+        console.error("Login failed:", result.error);
+      } else if (result?.url) {
+        window.location.href = result.url;
+      }
+    };
 
     // Basic validation
     if (!validateEmail(email)) {

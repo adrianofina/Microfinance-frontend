@@ -134,7 +134,6 @@ const HomePage = () => {
 
   {/* Right Side - 40% */}
   <div className="w-2/5 mb-8">
-    {/* Content for the right side goes here */}
    
        <LoanStatusDisplay/>
 
@@ -153,46 +152,13 @@ const HomePage = () => {
               onClick={() => router.push('/loan-application')}
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             >
-
-  {/* <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-              <div className="flex gap-4">
-                <CustomInput control={form.control} name='firstName' label="First Name" placeholder='Enter your first name' />
-                <CustomInput control={form.control} name='lastName' label="Last Name" placeholder='Enter your last name' />
-              </div>
-              <CustomInput control={form.control} name='address1' label="Address" placeholder='Enter your address' />
-              <CustomInput control={form.control} name='city' label="City" placeholder='Enter your city' />
-              <div className="flex gap-4">
-                <CustomInput control={form.control} name='state' label="State" placeholder='Enter your state' />
-                <CustomInput control={form.control} name='postalCode' label="Postal Code" placeholder='Enter your postal code' />
-              </div>
-              <div className="flex gap-4">
-                <CustomInput control={form.control} name='dateOfBirth' label="Date of Birth" placeholder='YYYY-MM-DD' />
-                <CustomInput control={form.control} name='ssn' label="SSN" placeholder='Enter your SSN' />
-              </div>
-              <CustomInput control={form.control} name='email' label="Email" placeholder='Enter your email' />
-              <CustomInput control={form.control} name='phoneNumber' label="Phone Number" placeholder='Enter your phone number' />
-
-              <div className="flex flex-col gap-4">
-                <Button type="submit" disabled={isLoading} className="form-btn">
-                  {isLoading ? (
-                    <>
-                      <Loader2 size={20} className="animate-spin" /> &nbsp;
-                      Loading...
-                    </>
-                  ) : 'Update Info'}
-                </Button>
-              </div>
-            </form>
-          </Form> */}
-
               Apply for a Loan
             </Button>
             <Button
               onClick={toggleLoanHistory} 
               className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
             >
-              {showLoanHistory ? 'Hide Loan History' : 'View Loan History'}
+              {showLoanHistory ? 'Hide Loan History' : 'Full Loan History'}
             </Button>
           </div>
           {/* Loan History Section (Conditional) */}

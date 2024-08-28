@@ -25,7 +25,7 @@ const Navbar = () => {
         }`}
       >
         <button onClick={toggleMenu} className="flex items-center">
-          <span className="dark:hover:bg-[#2b2b2b] dark:bg-[#212121] hover:bg-[#46b0b9] bg-[#47c4cf] rounded-lg hover:rounded-lg p-2">
+          <span className="bg-[#e8e8f5] hover:bg-[#d6d6f0] rounded-lg hover:rounded-lg p-2 ">
             <svg
               width="30"
               height="30"
@@ -79,7 +79,7 @@ const Navbar = () => {
         </button>
 
         <button className="py-4 flex items-center">
-          <span className="dark:hover:bg-[#2b2b2b] hover:rounded-lg p-2">
+          <span className="bg-[#e8e8f5] hover:bg-[#d6d6f0] rounded-lg hover:rounded-lg p-2">
             <svg
               width="30"
               height="30"
@@ -110,7 +110,7 @@ const Navbar = () => {
               Today
             </h1>
             <div className="space-y-2">
-              <div className="p-2 text-sm font-normal text-white dark:hover:bg-[#1b1b1b] hover:bg-[#f5f5f541] dark:bg-[#2c2c2c] bg-[#f5f5f51f] rounded-lg flex justify-between items-center cursor-pointer group">
+              <div className="p-2 text-sm font-normal text-white dark:bg-[#e8e8f5] hover:bg-[#d6d6f0] rounded-lg flex justify-between items-center cursor-pointer group">
                 <h2 className="truncate">Loan inqueries</h2>
                 <div className="flex items-center gap-2">
                   <div className="hidden group-hover:block">
@@ -149,7 +149,7 @@ const Navbar = () => {
                   </div>
                 </div>
               </div>
-              <div className="p-2 text-sm font-normal text-white dark:hover:bg-[#1b1b1b] hover:bg-[#f5f5f541] dark:bg-[#2c2c2c] bg-[#f5f5f51f] rounded-lg flex justify-between items-center cursor-pointer group">
+              <div className="p-2 text-sm font-normal text-white dark:bg-[#e8e8f5] hover:bg-[#d6d6f0] rounded-lg hover:rounded-lg flex justify-between items-center cursor-pointer group">
                 <h2 className="truncate">Interest rates</h2>
                 <div className="flex items-center gap-2">
                   <div className="hidden group-hover:block">
@@ -193,7 +193,7 @@ const Navbar = () => {
               Yesterday
             </h1>
             <div className="space-y-2">
-            <div className="p-2 text-sm font-normal text-white dark:hover:bg-[#1b1b1b] hover:bg-[#f5f5f541] dark:bg-[#2c2c2c] bg-[#f5f5f51f] rounded-lg flex justify-between items-center cursor-pointer group">
+            <div className="p-2 text-sm font-normal text-white dark:bg-[#e8e8f5] hover:bg-[#d6d6f0] rounded-lg hover:rounded-lg flex justify-between items-center cursor-pointer group">
             <h2 className="truncate">About Adriano</h2>
                 <div className="flex items-center gap-2">
                   <div className="hidden group-hover:block">
@@ -232,7 +232,7 @@ const Navbar = () => {
                   </div>
                 </div>
               </div>
-              <div className="p-2 text-sm font-normal text-white dark:hover:bg-[#1b1b1b] hover:bg-[#f5f5f541] dark:bg-[#2c2c2c] bg-[#f5f5f51f] rounded-lg flex justify-between items-center cursor-pointer group">
+              <div className="p-2 text-sm font-normal text-white dark:bg-[#e8e8f5] hover:bg-[#d6d6f0] rounded-lg hover:rounded-lg flex justify-between items-center cursor-pointer group">
                 <h2 className="truncate">My loan history</h2>
                 <div className="flex items-center gap-2">
                   <div className="hidden group-hover:block">
@@ -276,7 +276,7 @@ const Navbar = () => {
             Previous 7 Days
             </h1>
             <div className="space-y-2">
-            <div className="p-2 text-sm font-normal text-white dark:hover:bg-[#1b1b1b] hover:bg-[#f5f5f541] dark:bg-[#2c2c2c] bg-[#f5f5f51f] rounded-lg flex justify-between items-center cursor-pointer group">
+            <div className="p-2 text-sm font-normal text-white dark:hover:bg-[#e8e8f5] hover:bg-[#d6d6f0] rounded-lg hover:rounded-lg flex justify-between items-center cursor-pointer group">
             <h2 className="truncate">Qualifications</h2>
                 <div className="flex items-center gap-2">
                   <div className="hidden group-hover:block">
@@ -315,7 +315,7 @@ const Navbar = () => {
                   </div>
                 </div>
               </div>
-              <div className="p-2 text-sm font-normal text-white dark:hover:bg-[#1b1b1b] hover:bg-[#f5f5f541] dark:bg-[#2c2c2c] bg-[#f5f5f51f] rounded-lg flex justify-between items-center cursor-pointer group">
+              <div className="p-2 text-sm font-normal text-white dark:bg-[#e8e8f5] hover:bg-[#d6d6f0] rounded-lg hover:rounded-lg flex justify-between items-center cursor-pointer group">
                 <h2 className="truncate">How to avoid penalties</h2>
                 <div className="flex items-center gap-2">
                   <div className="hidden group-hover:block">
@@ -367,7 +367,7 @@ const Navbar = () => {
 
           {/* Footer Section */}
           <div className="mb-4 px-4">
-            <div className="flex items-center gap-2 py-2 dark:hover:bg-[#2F2F2F] hover:bg-[#f5f5f541] rounded-lg cursor-pointer">
+            <div className="flex items-center gap-2 py-2 dark:bg-[#e8e8f5] hover:bg-[#d6d6f0] rounded-lg hover:rounded-lg cursor-pointer">
               <div className="flex items-center justify-center w-8 text-white">
                 <svg
                   width="20"

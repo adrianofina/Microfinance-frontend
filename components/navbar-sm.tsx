@@ -49,7 +49,7 @@ const Chatheader = () => {
           <HiOutlineMenuAlt2 className="w-11 h-11 text-gray-50 dark:text-[#09ACBB] hover:bg-[#0fb9c9] dark:hover:bg-[#303030] hover:rounded-lg p-2" />
         </button>
         <div className="flex">
-          <span className="dark:hover:bg-[#303030] hover:bg-[#0fb9c9] text-gray-50 dark:text-[#09ACBB] hover:rounded-lg p-2">
+          <span className="dark:hover:bg-[#e8e8f5] hover:bg-[#d6d6f0] rounded-lg hover:rounded-lg text-gray-50 dark:text-[#09ACBB] hover:rounded-lg p-2">
             <svg
               width="28"
               height="28"
@@ -71,14 +71,14 @@ const Chatheader = () => {
 
       {/* Drawer section */}
       <div
-        className={`fixed top-0 left-0 w-80 dark:bg-[#212121] bg-[#09ACBB] z-50 h-full p-2 flex flex-col ${
+        className={`fixed top-0 left-0 w-80 dark:bg-[#e8e8f5] hover:bg-[#d6d6f0] rounded-lg hover:rounded-lg z-50 h-full p-2 flex flex-col ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform`}
       >
         {/* Top Section (Icon) */}
-        <div className="flex justify-between mb-4 bg-[#2ab7c43b] rounded-lg">
+        <div className="flex justify-between mb-4 bg-[#e8e8f5] hover:bg-[#d6d6f0] rounded-lg hover:rounded-lg">
           <button onClick={toggleDrawer} aria-label="close menu">
-            <HiOutlineMenuAlt2 className="w-11 h-11 dark:text-[#09ACBB] dark:hover:bg-[#303030] text-gray-50 hover:bg-[#ffffff31] hover:rounded-lg p-2" />
+            <HiOutlineMenuAlt2 className="w-11 h-11 dark:text-[#09ACBB] dark:bg-[#e8e8f5] hover:bg-[#d6d6f0] rounded-lg text-gray-50 hover:bg-[#ffffff31] hover:rounded-lg p-2" />
           </button>
           <button
             onClick={toggleDarkMode}
@@ -98,7 +98,7 @@ const Chatheader = () => {
               Today
             </h1>
             <div className="space-y-2">
-              <div className="p-2 text-sm font-normal text-white dark:hover:bg-[#1b1b1b] hover:bg-[#f5f5f541] dark:bg-[#2c2c2c] bg-[#f5f5f51f] rounded-lg flex justify-between items-center cursor-pointer group">
+              <div className="p-2 text-sm font-normal text-white dark:bg-[#e8e8f5] hover:bg-[#d6d6f0] rounded-lg hover:rounded-lg flex justify-between items-center cursor-pointer group">
                 <h2 className="truncate">About Adriano</h2>
                 <div className="flex items-center gap-2">
                   <div className="hidden group-hover:block">
@@ -137,7 +137,7 @@ const Chatheader = () => {
                   </div>
                 </div>
               </div>
-              <div className="p-2 text-sm font-normal text-white dark:hover:bg-[#1b1b1b] hover:bg-[#f5f5f541] dark:bg-[#2c2c2c] bg-[#f5f5f51f] rounded-lg flex justify-between items-center cursor-pointer group">
+              <div className="p-2 text-sm font-normal text-white dark:bg-[#e8e8f5] hover:bg-[#d6d6f0] rounded-lg hover:rounded-lg flex justify-between items-center cursor-pointer group">
                 <h2 className="truncate">Loan Application</h2>
                 <div className="flex items-center gap-2">
                   <div className="hidden group-hover:block">
@@ -181,7 +181,7 @@ const Chatheader = () => {
               Yesterday
             </h1>
             <div className="space-y-2">
-            <div className="p-2 text-sm font-normal text-white dark:hover:bg-[#1b1b1b] hover:bg-[#f5f5f541] dark:bg-[#2c2c2c] bg-[#f5f5f51f] rounded-lg flex justify-between items-center cursor-pointer group">
+            <div className="p-2 text-sm font-normal text-white dark:bg-[#e8e8f5] hover:bg-[#d6d6f0] rounded-lg hover:rounded-lg flex justify-between items-center cursor-pointer group">
             <h2 className="truncate">Loan Application</h2>
                 <div className="flex items-center gap-2">
                   <div className="hidden group-hover:block">
@@ -220,7 +220,7 @@ const Chatheader = () => {
                   </div>
                 </div>
               </div>
-              <div className="p-2 text-sm font-normal text-white dark:hover:bg-[#1b1b1b] hover:bg-[#f5f5f541] dark:bg-[#2c2c2c] bg-[#f5f5f51f] rounded-lg flex justify-between items-center cursor-pointer group">
+              <div className="p-2 text-sm font-normal text-white dark:bg-[#e8e8f5] hover:bg-[#d6d6f0] rounded-lg hover:rounded-lg flex justify-between items-center cursor-pointer group">
                 <h2 className="truncate">Interest Rates</h2>
                 <div className="flex items-center gap-2">
                   <div className="hidden group-hover:block">
@@ -264,7 +264,7 @@ const Chatheader = () => {
             Previous 7 Days
             </h1>
             <div className="space-y-2">
-            <div className="p-2 text-sm font-normal text-white dark:hover:bg-[#1b1b1b] hover:bg-[#f5f5f541] dark:bg-[#2c2c2c] bg-[#f5f5f51f] rounded-lg flex justify-between items-center cursor-pointer group">
+            <div className="p-2 text-sm font-normal text-white dark:bg-[#e8e8f5] hover:bg-[#d6d6f0] rounded-lg hover:rounded-lg flex justify-between items-center cursor-pointer group">
             <h2 className="truncate">Loan enquiries</h2>
                 <div className="flex items-center gap-2">
                   <div className="hidden group-hover:block">
@@ -303,7 +303,7 @@ const Chatheader = () => {
                   </div>
                 </div>
               </div>
-              <div className="p-2 text-sm font-normal text-white dark:hover:bg-[#1b1b1b] hover:bg-[#f5f5f541] dark:bg-[#2c2c2c] bg-[#f5f5f51f] rounded-lg flex justify-between items-center cursor-pointer group">
+              <div className="p-2 text-sm font-normal text-white dark:bg-[#e8e8f5] hover:bg-[#d6d6f0] rounded-lg hover:rounded-lg flex justify-between items-center cursor-pointer group">
                 <h2 className="truncate">Loan application</h2>
                 <div className="flex items-center gap-2">
                   <div className="hidden group-hover:block">
@@ -347,7 +347,7 @@ const Chatheader = () => {
 
         {/* Footer Section */}
         <div className="px-4 py-4 mt-auto">
-          <div className="flex items-center gap-2 dark:hover:bg-[#2F2F2F] hover:bg-[#f5f5f541] rounded-lg p-2 cursor-pointer">
+          <div className="flex items-center gap-2 dark:bg-[#e8e8f5] hover:bg-[#d6d6f0] rounded-lg hover:rounded-lg p-2 cursor-pointer">
             <div className="flex items-center justify-center w-8 text-white">
               <svg
                 width="20"

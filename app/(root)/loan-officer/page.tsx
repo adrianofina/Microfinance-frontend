@@ -271,11 +271,26 @@ const LoanOfficerPage: React.FC = () => {
             <div className="bg-white p-4 rounded shadow-md">
               <h2 className="text-xl font-bold mb-4">{selectedCustomer.name} Details</h2>
 
-              <div className="mb-6">
-                <h3 className="font-bold text-lg">Loan History</h3>
-                {/* Pass the loan history data to the LoansTable component */}
-                <LoansTable loanHistory={selectedCustomer.loanHistory} />
+              <div className="mt-6">
+                <h3 className="font-bold text-lg">Credentials</h3>
+                <p><strong>First Name:</strong> {selectedCustomer.credentials.firstName}</p>
+                <p><strong>Surname:</strong> {selectedCustomer.credentials.surname}</p>
+                <p><strong>Phone Number:</strong> {selectedCustomer.credentials.phoneNumber}</p>
+                <p><strong>Email:</strong> {selectedCustomer.credentials.email}</p>
+                <p><strong>Date of Birth:</strong> {selectedCustomer.credentials.dateOfBirth}</p>
+                <p><strong>Address:</strong> {selectedCustomer.credentials.address}</p>
+                <p><strong>Gender:</strong> {selectedCustomer.credentials.gender}</p>
+                <p><strong>Occupation:</strong> {selectedCustomer.credentials.occupation}</p>
+                <p><strong>Marital Status:</strong> {selectedCustomer.credentials.maritalStatus}</p>
               </div>
+              <br />
+              <div className="mb-6">
+      <h3 className="font-bold text-lg">Loan History</h3>
+      {/* Wrap the LoansTable in a div with a fixed height and overflow-y: auto */}
+      <div className="max-h-82 overflow-y-auto"> {/* Adjust the height as needed */}
+        <LoansTable loanHistory={selectedCustomer.loanHistory} />
+      </div>
+    </div>
 
               {selectedCustomer.application.status === 'Pending' && (
                 <div className="flex space-x-8 mb-4">
@@ -293,19 +308,6 @@ const LoanOfficerPage: React.FC = () => {
                   </button>
                 </div>
               )}
-
-              <div className="mt-6">
-                <h3 className="font-bold text-lg">Credentials</h3>
-                <p><strong>First Name:</strong> {selectedCustomer.credentials.firstName}</p>
-                <p><strong>Surname:</strong> {selectedCustomer.credentials.surname}</p>
-                <p><strong>Phone Number:</strong> {selectedCustomer.credentials.phoneNumber}</p>
-                <p><strong>Email:</strong> {selectedCustomer.credentials.email}</p>
-                <p><strong>Date of Birth:</strong> {selectedCustomer.credentials.dateOfBirth}</p>
-                <p><strong>Address:</strong> {selectedCustomer.credentials.address}</p>
-                <p><strong>Gender:</strong> {selectedCustomer.credentials.gender}</p>
-                <p><strong>Occupation:</strong> {selectedCustomer.credentials.occupation}</p>
-                <p><strong>Marital Status:</strong> {selectedCustomer.credentials.maritalStatus}</p>
-              </div>
             </div>
           )}
         </div>

@@ -5,16 +5,16 @@ function LoanStatusDisplay() {
     { id: '1 ', amount: 5000000, status: 'Paid', amountpaid: 5000000, overdue: false, penalties: 0, remainingBalance: 0 },
     { id: '2', amount: 700000, status: 'Paid', amountpaid: 500000, overdue: false, penalties: 0, remainingBalance: 200000 },
     { id: '3', amount: 3420000, status: 'Overdue', amountpaid: 3380000, overdue: true, penalties: 80000, remainingBalance: 120000 },
-    { id: '4', amount: 3000000, status: 'Pending', amountpaid: 3500000, overdue: false, penalties: 0, remainingBalance: 150000 },
-    { id: '5', amount: 2000000, status: 'In-progress', amountpaid: 0, overdue: false, penalties: 0, remainingBalance: 2000000 },
+    { id: '4', amount: 3000000, status: 'In-progress', amountpaid: 3500000, overdue: false, penalties: 0, remainingBalance: 150000 },
+    { id: '5', amount: 2000000, status: 'In-application', amountpaid: 0, overdue: false, penalties: 0, remainingBalance: 0 },
   ]);
 
-  // Sort loanHistory by status priority (overdue > pending > In-progress > paid)
+  // Sort loanHistory by status priority (overdue > progess > In-application > paid)
   const sortedLoanHistory = [...loanHistory].sort((a, b) => {
     const statusOrder = {
       'Overdue': 1,
-      'Pending': 2,
-      'In-progress': 3,
+      'In-progress': 2,
+      'In-application': 3,
       'Paid': 4,
     };
     return statusOrder[a.status] - statusOrder[b.status];
@@ -27,60 +27,89 @@ function LoanStatusDisplay() {
     <div>
       <h3 className="text-lg font-medium text-gray-800">Loan Status: {highestPriorityLoan.status}</h3> 
 
-      {/* Display the circle only if there's a Overdue loan */}
-      {highestPriorityLoan.status === 'Overdue' && (
-        <div className="mt-4">
-          <div className="relative w-48 h-48 rounded-full flex items-center justify-center">
-            {/* Outer Ring (colored) */}
-            <div
-              className={`absolute w-full h-full rounded-full ${
-                highestPriorityLoan.overdue ? 'bg-red-500' : 'bg-yellow-400'
-              } flex items-center justify-center`}
-            />
+   {/* Conditional rendering for different loan statuses */}
+   <div className="mt-4">
+        <div className="relative w-52 h-52 rounded-full flex items-center justify-center">
+          {/* Outer Ring (colored) */}
+          <div
+            className={`absolute w-full h-full rounded-full ${
+              highestPriorityLoan.status === 'Overdue' ? 'bg-red-500' :
+              highestPriorityLoan.status === 'In-progress' ? 'bg-yellow-400' :
+              highestPriorityLoan.status === 'In-application' ? 'bg-blue-200' :
+              'bg-green-500' 
+            } flex items-center justify-center`}
+          />
 
             {/* Inner Circle (colored with page background) */}
             <div
               className={`absolute w-40 h-40 rounded-full flex items-center justify-center border-4 bg-gray-100`} 
             >
               {/* Display paid amount and total amount */}
-              <div className="text-sm font-medium text-gray-800 mb-2"> 
-                {highestPriorityLoan.amountpaid}  / {highestPriorityLoan.amount} 
+              <div className="font-bold text-sm text-gray-800 mb-2"> 
+              {highestPriorityLoan.amount} / {highestPriorityLoan.amountpaid} 
                 <br />
                 {/* paid/amount <br />  */}
               </div>
 
               {/* Display remaining balance in the middle */}
-              <div className="absolute bottom-4 text-xs font-medium text-gray-800 mb-2">
-              Remaining Balance       <br />
+              <div className="absolute bottom-8 text-xs font-medium text-gray-800 mb-2">
+             <span className="font-bold">Remaining Balance</span> 
+            <br />
+            <span 
+              className={`font-bold absolute top-4 left-4 text-xs  mb-2 ${
+                highestPriorityLoan.status === 'Overdue' ? 'text-red-700' : 
+                highestPriorityLoan.status === 'In-progress' ? 'text-yellow-700' : 
+                highestPriorityLoan.status === 'In-application' ? 'text-blue-700' : 
+                'text-green-500' 
+              }`}
+            >
               {highestPriorityLoan.remainingBalance} TZS 
+            </span> 
               </div>
 
-              {/* Display status-specific messages for pending loan */}
-              {!highestPriorityLoan.overdue && (
-                <div className="absolute top-4 text-xs font-medium text-gray-600">
-                Pending. Please remember to pay before the 14th of this month.
-                </div>
-              )}
+          
             </div>
           </div>
 
           {/* Display overdue message if applicable */}
           {highestPriorityLoan.overdue && (
             <div className="mt-2 text-sm font-medium text-red-500">
-              You are being penalized.
+            {/* Late payment fee applied: Your loan is now overdue. */}
+            {/* <br /> */}
+                   Penalty interest rate activated:
+            <br /> Please settle your outstanding balance.
             </div>
           )}
-        </div>
-      )}
 
-      {/* Display a message for a fully paid loan */}
-      {highestPriorityLoan.status === 'Paid' && (
-        <div className="mt-4">
-          <div className="text-sm font-medium text-green-500">
-            Congratulations! You have already paid your loan.
+        {/* Display status-specific messages for pending loan */}
+        {highestPriorityLoan.status !== 'Paid' && !highestPriorityLoan.overdue && highestPriorityLoan.status !== 'In-application' && ( 
+          <div className="mt-2 text-sm font-medium  text-yellow-500">
+            Friendly reminder:
+            <br />
+            Pay by the 14th of this month to stay on track.
           </div>
+        )}
+          
+         {/* Display a message for an In-application loan */}
+         {highestPriorityLoan.status === 'In-application' && ( 
+          <div className="mt-2 text-sm font-medium  text-blue-500">
+            Your loan application is currently being processed.
+            <br />
+            We will notify you of the outcome shortly.
+          </div>
+        )}
+          {/* Display a message for a fully paid loan */}
+        {highestPriorityLoan.status === 'Paid' && ( // Correct condition
+          <div className="mt-2 text-sm font-medium  text-green-500">
+            Congratulations! 
+            <br />
+            You have paid your loan.
+          </div>
+        )}     
+            
         </div>
-      )}
+      
+
     </div>
   );
 }

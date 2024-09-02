@@ -66,28 +66,28 @@ const HomePage = () => {
     setShowLoanHistory(!showLoanHistory);
   };
 
-  useEffect(() => {
-    const background = backgroundRef.current;
-    if (!background) return;
+  // useEffect(() => {
+  //   const background = backgroundRef.current;
+  //   if (!background) return;
 
-    const animation = background.animate(
-      [
-        { backgroundColor: 'hsl(0, 0%, 98%)' },
-        { backgroundColor: 'hsl(0, 0%, 96%)' },
-        { backgroundColor: 'hsl(0, 0%, 94%)' },
-        { backgroundColor: 'hsl(0, 0%, 92%)' },
-        { backgroundColor: 'hsl(0, 0%, 90%)' },
-        { backgroundColor: 'hsl(0, 0%, 98%)' },
-      ],
-      {
-        duration: 3000, // Animation duration (in milliseconds)
-        iterations: Infinity, // Repeat infinitely
-        easing: 'ease-in-out', // Smooth transition
-      }
-    );
+  //   const animation = background.animate(
+  //     [
+  //       { backgroundColor: 'hsl(0, 0%, 98%)' },
+  //       { backgroundColor: 'hsl(0, 0%, 96%)' },
+  //       { backgroundColor: 'hsl(0, 0%, 94%)' },
+  //       { backgroundColor: 'hsl(0, 0%, 92%)' },
+  //       { backgroundColor: 'hsl(0, 0%, 90%)' },
+  //       { backgroundColor: 'hsl(0, 0%, 98%)' },
+  //     ],
+  //     {
+  //       duration: 3000, // Animation duration (in milliseconds)
+  //       iterations: Infinity, // Repeat infinitely
+  //       easing: 'ease-in-out', // Smooth transition
+  //     }
+  //   );
 
-    return () => animation.cancel(); // Clean up the animation on unmount
-  }, []);
+  //   return () => animation.cancel(); // Clean up the animation on unmount
+  // }, []);
 
   return (
     <div className="flex h-screen w-screen" ref={backgroundRef}>
@@ -119,7 +119,7 @@ const HomePage = () => {
           </p>
           <div className="flex">
   {/* Left Side - 60% */}
-  <div className="w-3/5 mb-8">
+  <div className="w-4/5 mb-8">
     <h3 className="text-lg font-medium text-gray-800">Your Credentials:</h3>
     <p className="text-gray-700">First Name: Laurent</p>
     <p className="text-gray-700">Surname: Adriano</p>

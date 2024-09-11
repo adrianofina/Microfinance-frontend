@@ -1,15 +1,15 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Sidebar from '../../../components/sidebar';
-import Header from '../../../components/header';
+import Sidebar from '../../components/bars/sidebar';
+import Header from '../../components/bars/header';
 import { Loader2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { Button } from '@/components/button';
+import { Button } from '../../components/ui/button';
 import SearchIcon from '@mui/icons-material/Search';
 import styles from './SearchButton.module.css';
-import LoansTable from '../../../components/LoansTable'; 
-import AddCustomerForm from '@/components/newcustomer';
+import LoansTable from '../../components/Loan/LoansTable'; 
+import AddCustomerForm from '../../components/Forms/newcustomer';
 
 const LoanOfficerPage: React.FC = () => {
   const [selectedCustomer, setSelectedCustomer] = useState<any>(null);

@@ -2,8 +2,8 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Sidebar from './sidebar';
-import Formprogress from './progress'; // Assuming this is your progress component
+import Sidebar from '../bars/sidebar';
+import Formprogress from '../bars/progress'; // Assuming this is your progress component
 
 const AddCustomerForm: React.FC = () => {
   const [step, setStep] = useState(1);
@@ -130,7 +130,7 @@ const AddCustomerForm: React.FC = () => {
                     Phone Number
                   </label>
                   <input
-                    type="text"
+                   type="number"
                     id="phoneNumber"
                     name="phoneNumber"
                     value={formData.phoneNumber}

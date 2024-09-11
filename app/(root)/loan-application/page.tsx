@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Button } from "@/components/button";
+import { Button } from "../../components/ui/button";
 import { Loader2 } from 'lucide-react';
 import { applyForLoan, getLoggedInUser } from '@/lib/actions/user.actions';
 import { useRouter } from 'next/navigation';

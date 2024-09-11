@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { getLoggedInUser, updateUserInfo } from '@/lib/actions/user.actions';
 import { Loader2 } from 'lucide-react';
-import { Button } from "@/components/button";
+import { Button } from "../ui/button";
 import Link from 'next/link';
 
 const UpdateCredentialsForm = () => {
@@ -97,7 +97,7 @@ const UpdateCredentialsForm = () => {
               Phone Number:
             </label>
             <input
-              type="tel"
+              type="number"
               id="phoneNumber"
               name="phoneNumber"
               value={formData.phoneNumber}

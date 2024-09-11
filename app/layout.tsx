@@ -1,16 +1,9 @@
-export const dynamic = 'force-dynamic'
-
-import type { Metadata } from "next";
-import { Inter, IBM_Plex_Serif } from "next/font/google";
+import AuthProvider from "@/context/AuthProvider";
 import "./globals.css";
+import { roboto, inter, poppins, montserrat } from "./utils/fonts";
+import { ThemeProvider } from "next-themes";
 
-const inter = Inter({ subsets: ["latin"], variable: '--font-inter' });
-const ibmPlexSerif = IBM_Plex_Serif({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  variable: '--font-ibm-plex-serif'
-})
-
+// Define metadata using the Metadata API
 export const metadata: Metadata = {
   title: "Adriano",
   description: "Adriano is a modern microfinance platform for everyone.",
@@ -19,14 +12,17 @@ export const metadata: Metadata = {
   }
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${ibmPlexSerif.variable}`}>{children}</body>
+      <body className={`${inter} ${roboto} ${poppins} ${montserrat}`}>
+        <ThemeProvider> 
+      {/* Wrap children with the SessionProvider to handle user authentication and session data. */}
+      <AuthProvider>
+          <main>{children}</main>
+        </AuthProvider>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

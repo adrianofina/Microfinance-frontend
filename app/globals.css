@@ -86,4 +86,38 @@ header {
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.85); /* Light background with slight transparency */
 }
+/* Styles for text boxes (more general) */
+input[type="text"], 
+input[type="email"],
+input[type="date"],
+input[type="number"], 
+textarea 
+{ 
+  @apply px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500;
+  background-color: white; /* Set a white background */
+}
 
+/* Styles for select elements (gender and loan status) */
+select { 
+  @apply px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500;
+  background-color: white; /* Set a white background */
+}
+
+/* Styles for text boxes with specific classes (if needed) */
+.your-class-name input[type="text"], 
+.your-class-name textarea {
+  background-color: white; /* Set a white background */
+}
+
+.your-form-class input[name="gender"] {
+  background-color: white !important; /* Use !important to override */
+}
+/* Additional styling for forms (example) */
+form {
+  @apply bg-white p-6 rounded-md shadow-md;
+}
+
+/* Style any parent elements that might be causing black backgrounds */
+.black-background-parent {
+  background-color: white; /* Set a white background */
+}

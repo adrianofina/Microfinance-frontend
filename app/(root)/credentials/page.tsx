@@ -1,4 +1,4 @@
-import UpdateCredentialsForm from '@/components/updatecredentials'
+import UpdateCredentialsForm from '../../components/Forms/updatecredentials'
 import React from 'react'
 
 const UpdateCredentailspage = () => {

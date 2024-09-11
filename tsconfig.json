@@ -32,7 +32,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "components/Register.tsx",
+    "components/Forms/Register.tsx",
     "app/(auth)/sign-up/page.jsx",
     "components/Sessionprovider.tsx"
 , "app/api/(auth)/auth/options.js", "app/api/(auth)/auth/route.js", "lib/auth.js"  ],

@@ -2,44 +2,56 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import Sidebar from '../../../components/sidebar';
-import LoanProgress from '../../../components/progress';
+import Sidebar from '../../components/bars/sidebar';
+import LoanProgress from '../../components/bars/progress';
 import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { Button } from "@/components/button";
+import { Button } from '../../components/ui/button';
 import { Loader2 } from 'lucide-react';
-import LoanStatusDisplay from '@/components/LoanStatusDisplay';
-import LoanTable from '../../../components/LoansTable'; // Import the LoanTable component
+import LoanStatusDisplay from '../../components/Loan/LoanStatusDisplay';
+import LoanTable from '../../components/Loan/LoansTable'; // Import the LoanTable component
+import { getLoggedInUser, applyForLoan, getLoanHistory } from '../../services/userService';
+
+
 
 const HomePage = () => {
   const router = useRouter();
-  // const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [loanHistory, setLoanHistory] = useState<any[]>([]);
   const [showLoanHistory, setShowLoanHistory] = useState(false); // New state variable for loan history
   const backgroundRef = useRef(null);
 
-  // useEffect(() => {
-  //   const fetchUser = async () => {
-  //     const loggedInUser = await getLoggedInUser();
-  //     setUser(loggedInUser);
-  //   };
 
-  //   fetchUser();
-  // }, []);
+type LoanTableProps = {
+  loanHistory: any[]; // Replace `any[]` with the correct type for loan history if available
+};
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const loggedInUser = await getLoggedInUser();
+        setUser(loggedInUser);
+      } catch (error) {
+        console.error('Failed to fetch user:', error);
+      }
+    };
+
+    fetchUser();
+  }, []);
 
   const handleLoanApplication = async (loanData: any) => {
     setIsLoading(true);
 
     try {
-      // if (user) {
-      //   await applyForLoan(user.id, loanData);
-      //   router.push('/loan-history');
-      // } else {
-      //   console.error("User not found");
-      // }
+      if (user) {
+        await applyForLoan(user.id, loanData);
+        router.push('/loan-history');
+      } else {
+        console.error('User not found');
+      }
     } catch (error) {
-      console.log(error);
+      console.error('Error applying for loan:', error);
     } finally {
       setIsLoading(false);
     }
@@ -49,14 +61,14 @@ const HomePage = () => {
     setIsLoading(true);
 
     try {
-      // if (user) {
-      //   const history = await getLoanHistory(user.id);
-      //   setLoanHistory(history);
-      // } else {
-      //   console.error("User not found");
-      // }
+      if (user) {
+        const history = await getLoanHistory(user.id);
+        setLoanHistory(history);
+      } else {
+        console.error('User not found');
+      }
     } catch (error) {
-      console.log(error);
+      console.error('Error fetching loan history:', error);
     } finally {
       setIsLoading(false);
     }
@@ -64,30 +76,10 @@ const HomePage = () => {
 
   const toggleLoanHistory = () => {
     setShowLoanHistory(!showLoanHistory);
+    if (!showLoanHistory) {
+      fetchLoanHistory();
+    }
   };
-
-  // useEffect(() => {
-  //   const background = backgroundRef.current;
-  //   if (!background) return;
-
-  //   const animation = background.animate(
-  //     [
-  //       { backgroundColor: 'hsl(0, 0%, 98%)' },
-  //       { backgroundColor: 'hsl(0, 0%, 96%)' },
-  //       { backgroundColor: 'hsl(0, 0%, 94%)' },
-  //       { backgroundColor: 'hsl(0, 0%, 92%)' },
-  //       { backgroundColor: 'hsl(0, 0%, 90%)' },
-  //       { backgroundColor: 'hsl(0, 0%, 98%)' },
-  //     ],
-  //     {
-  //       duration: 3000, // Animation duration (in milliseconds)
-  //       iterations: Infinity, // Repeat infinitely
-  //       easing: 'ease-in-out', // Smooth transition
-  //     }
-  //   );
-
-  //   return () => animation.cancel(); // Clean up the animation on unmount
-  // }, []);
 
   return (
     <div className="flex h-screen w-screen" ref={backgroundRef}>
@@ -115,31 +107,28 @@ const HomePage = () => {
         <div className="welcome-section bg-gray-100 rounded-lg shadow-2xl p-8">
           <h2 className="text-2xl font-semibold mb-4 text-gray-800">Welcome Laurent!</h2>
           <p className="mb-6 text-gray-700">
-            Meet Adriano, Your trusted partner for financial solutions. We are here to help you achieve your financial goals.
+            Meet Adriano, your trusted partner for financial solutions. We are here to help you achieve your financial goals.
           </p>
           <div className="flex">
-  {/* Left Side - 60% */}
-  <div className="w-4/5 mb-8">
-    <h3 className="text-lg font-medium text-gray-800">Your Credentials:</h3>
-    <p className="text-gray-700">First Name: Laurent</p>
-    <p className="text-gray-700">Surname: Adriano</p>
-    <p className="text-gray-700">Phone Number: +255784461743</p>
-    <p className="text-gray-700">Email: adriandevelopment@gmail.com</p>
-    <p className="text-gray-700">Date of Birth: 14 Feb 1969</p>
-    <p className="text-gray-700">Address: Business Street, Mwanza</p>
-    <p className="text-gray-700">Gender: Male</p>
-    <p className="text-gray-700">Occupation: Business Man</p>
-    <p className="text-gray-700">Marital status: Married</p>
-  </div>
+            {/* Left Side - 60% */}
+            <div className="w-4/5 mb-8">
+              <h3 className="text-lg font-medium text-gray-800">Your Credentials:</h3>
+              <p className="text-gray-700">First Name: Laurent</p>
+              <p className="text-gray-700">Surname: Adriano</p>
+              <p className="text-gray-700">Phone Number: +255784461743</p>
+              <p className="text-gray-700">Email: adriandevelopment@gmail.com</p>
+              <p className="text-gray-700">Date of Birth: 14 Feb 1969</p>
+              <p className="text-gray-700">Address: Business Street, Mwanza</p>
+              <p className="text-gray-700">Gender: Male</p>
+              <p className="text-gray-700">Occupation: Business Man</p>
+              <p className="text-gray-700">Marital Status: Married</p>
+            </div>
 
-  {/* Right Side - 40% */}
-  <div className="w-2/5 mb-8">
-   
-       <LoanStatusDisplay/>
-
-  </div>
-  
-</div>
+            {/* Right Side - 40% */}
+            <div className="w-2/5 mb-8">
+              <LoanStatusDisplay />
+            </div>
+          </div>
 
           <div className="flex space-x-8">
             <Button
@@ -171,11 +160,9 @@ const HomePage = () => {
                 </div>
               ) : (
                 <div className="overflow-x-auto mb-4">
-                  {
-                  // loanHistory.length === 0 ? (
-                  //   <p>No loan history available.</p>
-                  // ) :
-                   (
+                  {loanHistory.length === 0 ? (
+                    <p>No loan history available.</p>
+                  ) : (
                     <LoanTable loanHistory={loanHistory} /> // Render the LoanTable component
                   )}
                 </div>

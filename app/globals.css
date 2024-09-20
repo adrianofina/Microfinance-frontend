@@ -91,16 +91,15 @@ input[type="text"],
 input[type="email"],
 input[type="date"],
 input[type="number"], 
+input[type="checkbox"]
 textarea 
 { 
-  @apply px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500;
-  background-color: white; /* Set a white background */
+  @apply px-3 py-2 text-gray-900 bg-white bg-opacity-25 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-600 focus:border-transparent;
 }
 
 /* Styles for select elements (gender and loan status) */
 select { 
-  @apply px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500;
-  background-color: white; /* Set a white background */
+  @apply px-3 py-2 text-gray-900 bg-white bg-opacity-25 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-600 focus:border-transparent;
 }
 
 /* Styles for text boxes with specific classes (if needed) */
@@ -114,7 +113,7 @@ select {
 }
 /* Additional styling for forms (example) */
 form {
-  @apply bg-white p-6 rounded-md shadow-md;
+  @apply p-4 rounded-md shadow-md;
 }
 
 /* Style any parent elements that might be causing black backgrounds */

@@ -1,25 +1,29 @@
-import { NextResponse } from "next/server"; 
-import bcrypt from "bcryptjs"; 
+import { NextResponse } from "next/server";
+import bcrypt from "bcryptjs";
 import { createUserWithAccount, getUserByEmail } from "../../../utils/users";
 
-export const POST = async (req, res) => {   
+export const POST = async (req) => {   
   try {
-    // Get the user data from the request body  
+    // Parse JSON body
     const { username, email, password } = await req.json();
-    const existingUser = await getUserByEmail(email);
 
+    // Check if the email is already in use
+    const existingUser = await getUserByEmail(email);
     if (existingUser) {
       return NextResponse.json({ message: "Email already in use" }, { status: 400 });
     }
-    // Hash the password before creating the user  
+
+    // Hash the password using bcryptjs
     const hashedPassword = await bcrypt.hash(password, 10);
-    // Create the user with the hashed password
+
+    // Create the user in the database
     const newUser = await createUserWithAccount({ username, email, password: hashedPassword });
 
-    return NextResponse.json({ message: "User created successfully", data: { ...newUser } }, { status: 201 });
+    // Return success response with the created user data
+    return NextResponse.json({ message: "User created successfully", data: newUser }, { status: 201 });
+    
   } catch (error) {
-    console.log(error); // Log the error first
-    return NextResponse.json({ message: "Error", error }, { status: 500 });
+    console.error("Error creating user:", error); // Improved logging for errors
+    return NextResponse.json({ message: "Server Error", error: error.message }, { status: 500 });
   }
 };
-

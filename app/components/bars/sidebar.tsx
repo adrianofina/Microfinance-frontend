@@ -53,26 +53,26 @@ const Sidebar: React.FC = () => {
 
           {/* Sign Out Link */}
           <div className="absolute bottom-4 left-4 w-full px-4">
-            <Link
-              href="/sign-out"
-              className="flex items-center gap-2 text-black bg-[#e8e8f5] hover:bg-[#d6d6f0] p-2 rounded-md text-sm"
-            >
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1"
-                ></path>
-              </svg>
-              Sign out
-            </Link>
+          <Link
+  href="/" // Replace with your actual landing page route
+  className="flex items-center gap-2 text-black bg-[#e8e8f5] hover:bg-[#d6d6f0] p-2 rounded-md text-sm"
+>
+  <svg
+    className="w-4 h-4"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1"
+    ></path>
+  </svg>
+  Sign out
+</Link>
           </div>
         </div>
       </div>

@@ -4,11 +4,12 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 
 const sidebarLinks = [
-  { label: 'Adriano', route: '/adrian-chat' },
-  { label: 'About us', route: '/about-us' },
-  { label: 'Loan Officer', route: '/loan-officer' },
-  { label: 'About us', route: '/about-us' },
   { label: 'Home', route: '/home' },
+  { label: 'Adriano', route: '/adrian-chat' },
+  { label: 'Admin', route: '/admin' },
+  { label: 'Loan Officer', route: '/loan-officer' },
+  { label: 'Settings', route: '/settings' },
+
 ];
 
 const Sidebar: React.FC = () => {

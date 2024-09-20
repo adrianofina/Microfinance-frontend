@@ -26,7 +26,7 @@ const ForgotPassword: React.FC = () => {
 
     if (emailSent) {
       setErrorMessage(''); // Clear error message
-      router.push('/password-reset-success'); // Redirect to a success page
+      router.push('/login'); // Redirect to a success page
     } else {
       setErrorMessage('Failed to send password reset email.');
     }

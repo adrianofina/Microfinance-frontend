@@ -92,6 +92,7 @@ input[type="email"],
 input[type="date"],
 input[type="number"], 
 input[type="checkbox"]
+input[type="password"]
 textarea 
 { 
   @apply px-3 py-2 text-gray-900 bg-white bg-opacity-25 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-600 focus:border-transparent;
